@@ -1,7 +1,15 @@
+var inputDate = document.querySelector(".input-date");
+var checkBtn = document.querySelector(".check-btn");
+var outputText = document.querySelector(".result");
 
-function reverseString(strReceived) {
-    var reversedText = strReceived.split("").reverse().join("");
-    return reversedText;
+
+
+
+function reverseString(str) {
+    var listOfChars = str.split("");
+    var reversedListOfChar = listOfChars.reverse();
+    var reversedString = reversedListOfChar.join("");
+    return reversedString;
 }
 
 function isPalindrome(strReceived) {
@@ -56,7 +64,7 @@ function checkPalindromeForAllDateFormates(dateEnteredByUser) {
 
     let resultPalindrome = false;
     for (let i = 0; i < dateFormateReceived.length; i++) {
-        if (isPalindrome(i)) {
+        if (isPalindrome(dateEnteredByUser[i])) {
             return resultPalindrome = true;
             break;
         }
@@ -105,21 +113,21 @@ function getNextDate(dateEnteredByUser) {
     }
 
     // for month
-    if(month>12){
-        day=1;
-        month=1;
+    if (month > 12) {
+        day = 1;
+        month = 1;
         year++;
     }
 
     return {
-        day:day,
-        month:month,
-        year:year
+        day: day,
+        month: month,
+        year: year
     };
 
 }
 
-function getPreviosDate(dateEnteredByUser){
+function getPreviousDate(dateEnteredByUser) {
     var day = dateEnteredByUser.day - 1;
     var month = dateEnteredByUser.month;
     var year = dateEnteredByUser.year;
@@ -129,34 +137,106 @@ function getPreviosDate(dateEnteredByUser){
     if (month === 3) {
         if (isLeapYear(year)) {
             if (day < 1) {
-                day = daysInMonth[month-1];
+                day = daysInMonth[month - 1];
                 month--;
             }
         }
         else {
             if (day < 1) {
-                day = daysInMonth[month-1];
+                day = daysInMonth[month - 1];
                 month--;
             }
         }
     }
     else {
         if (day < 1) {
-            day = daysInMonth[month-1];
+            day = daysInMonth[month - 1];
             month--;
         }
     }
 
     // for month
-    if(month<1){
-        day=31;
-        month=12;
+    if (month < 1) {
+        day = 31;
+        month = 12;
         year--;
     }
 
     return {
-        day:day,
-        month:month,
-        year:year
+        day: day,
+        month: month,
+        year: year
     };
 }
+
+function getNextPalindromeDate(dateEnteredByUser) {
+    var nextDate = getNextDate(dateEnteredByUser);
+    var counterNext = 0;
+    while (true) {
+        counterNext++;
+        if (checkPalindromeForAllDateFormates(nextDate)) {
+            break;
+        }
+        nextDate = getNextDate(nextDate)
+    }
+    return [counterNext, nextDate];
+}
+
+function getPreviousPalindromeDate(dateEnteredByUser) {
+
+    var previousDate = getPreviousDate(dateEnteredByUser);
+    var counterPrevious = 0;
+
+    while (true) {
+        counterPrevious++;
+        if (checkPalindromeForAllDateFormates(previousDate)) {
+            break;
+        }
+        previousDate = getPreviousDate(previousDate);
+    }
+    return [counterPrevious, previousDate];
+}
+
+function nearestPalindromeDate(next, previous) {
+    var months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    if (next[0] < previous[0]) {
+        if (next[0] === 1) {
+            outputText.innerText = "The nearest palindrome date is: " + next[1].day + " " + months[next[1].month - 1] + ", " + next[1].year + ". " + "You missed it by " + next[0] + " day.";
+        } else {
+            outputText.innerText = "The nearest palindrome date is: " + next[1].day + " " + months[next[1].month - 1] + ", " + next[1].year + ". " + "You missed it by " + next[0] + " days.";
+        }
+    } else {
+        if (previous[0] === 1) {
+            outputText.innerText = "The nearest palindrome date is: " + previous[1].day + " " + months[previous[1].month - 1] + ", " + previous[1].year + ". " + "You missed it by " + previous[0] + " day.";
+        } else {
+            outputText.innerText = "The nearest palindrome date is: " + previous[1].day + " " + months[previous[1].month - 1] + ", " + previous[1].year + ". " + "You missed it by " + previous[0] + " days.";
+        }
+    }
+}
+
+function outputValue() {
+    var inputBdate = inputDate.value;
+
+    if (inputBdate !== "") {
+        var dateArray = inputBdate.split("-");
+        var enteredDate = {
+            day: Number(dateArray[2]),
+            month: Number(dateArray[1]),
+            year: Number(dateArray[0]),
+        };
+        var enteredDatestr=convertDateToString(enteredDate);
+        if (checkPalindromeForAllDateFormates(enteredDatestr)) {
+            outputText.innerText = "your Birthday is Palindrome🎉";
+        }
+        else {
+            var dateNext = getNextPalindromeDate(enteredDate);
+            var datePrevios = get(enteredDate);
+            nearestPalindromeDate(dateNext, datePrevios);
+        }
+    }
+    else {
+        outputText.innerText = "Please Select a date";
+    }
+}
+
+checkBtn.addEventListener("click", outputValue);
