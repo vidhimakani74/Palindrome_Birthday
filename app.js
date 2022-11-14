@@ -61,7 +61,7 @@ function checkPalindromeForAllDateFormates(dateEnteredByUser) {
 
     let resultPalindrome = false;
     for (let i = 0; i < dateFormateReceived.length; i++) {
-        if (isPalindrome(dateEnteredByUser[i])) {
+        if (isPalindrome(dateFormateReceived[i])) {
             return resultPalindrome = true;
             break;
         }
