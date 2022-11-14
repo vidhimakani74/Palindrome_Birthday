@@ -1,7 +1,11 @@
-*{
+* {
     text-align: center;
     color-scheme: dark;
     color: #fbbf24;
+}
+
+h1 {
+    color: yellowgreen;
 }
 
 body {
@@ -12,9 +16,10 @@ body {
     height: 100vh;
 }
 
-hr{
+hr {
     color: aliceblue;
 }
+
 input {
     display: block;
     margin: auto;
@@ -31,16 +36,17 @@ button {
     margin: 1rem;
 }
 
-button:hover{
+button:hover {
     background-color: #fbbf24;
     color: black;
 }
+
 .container {
     width: 60%;
     height: 100%;
     margin: auto;
-  }
+}
 
-.result{
-    color:red;
+.result {
+    color: red;
 }

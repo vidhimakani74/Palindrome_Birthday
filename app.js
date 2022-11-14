@@ -221,7 +221,7 @@ function outputValue() {
             month: Number(dateArray[1]),
             year: Number(dateArray[0]),
         };
-       // var enteredDatestr=convertDateToString(enteredDate);
+        // var enteredDatestr=convertDateToString(enteredDate);
         if (checkPalindromeForAllDateFormates(enteredDate)) {
             outputText.innerText = "Your Birthday is Palindrome🎉";
             outputText.style.color = "green";
