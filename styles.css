@@ -1,3 +1,46 @@
 *{
     text-align: center;
+    color-scheme: dark;
+    color: #fbbf24;
+}
+
+body {
+    margin: 0;
+    background-color: #1e293b;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+hr{
+    color: aliceblue;
+}
+input {
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding: 0.3rem;
+    margin-top: 1rem;
+}
+
+button {
+    padding: 0.4rem;
+    border: 0.5px solid #fbbf24;
+    background: transparent;
+    border-radius: 0.5rem;
+    margin: 1rem;
+}
+
+button:hover{
+    background-color: #fbbf24;
+    color: black;
+}
+.container {
+    width: 60%;
+    height: 100%;
+    margin: auto;
+  }
+
+.result{
+    color:red;
 }

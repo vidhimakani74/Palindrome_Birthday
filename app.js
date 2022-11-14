@@ -223,7 +223,8 @@ function outputValue() {
         };
        // var enteredDatestr=convertDateToString(enteredDate);
         if (checkPalindromeForAllDateFormates(enteredDate)) {
-            outputText.innerText = "your Birthday is Palindrome🎉";
+            outputText.innerText = "Your Birthday is Palindrome🎉";
+            outputText.style.color = "green";
         }
         else {
             var dateNext = getNextPalindromeDate(enteredDate);
@@ -232,7 +233,8 @@ function outputValue() {
         }
     }
     else {
-        outputText.innerText = "Please Select your date of birth";
+        outputText.innerText = "Please Select your date of birth 📢";
+        outputText.style.color = "#0ea5e9";
     }
 }
 
