@@ -2,19 +2,16 @@ var inputDate = document.querySelector(".input-date");
 var checkBtn = document.querySelector(".check-btn");
 var outputText = document.querySelector(".result");
 
-
-
-
-function reverseString(str) {
+function reverseStr(str) {
     var listOfChars = str.split("");
     var reversedListOfChar = listOfChars.reverse();
     var reversedString = reversedListOfChar.join("");
     return reversedString;
 }
 
-function isPalindrome(strReceived) {
-    var reversedText = reverseString(strReceived);
-    return (strReceived === reversedText);
+function isPalindrome(str) {
+    var reversedText = reverseStr(str);
+    return (str === reversedText);
 }
 
 function convertDateToString(dateEnteredByUser) {
@@ -225,17 +222,17 @@ function outputValue() {
             year: Number(dateArray[0]),
         };
         var enteredDatestr=convertDateToString(enteredDate);
-        if (checkPalindromeForAllDateFormates(enteredDatestr)) {
+        if (checkPalindromeForAllDateFormates(enteredDate)) {
             outputText.innerText = "your Birthday is Palindrome🎉";
         }
         else {
             var dateNext = getNextPalindromeDate(enteredDate);
-            var datePrevios = get(enteredDate);
+            var datePrevios = getPreviousPalindromeDate(enteredDate);
             nearestPalindromeDate(dateNext, datePrevios);
         }
     }
     else {
-        outputText.innerText = "Please Select a date";
+        outputText.innerText = "Please Select your date of birth";
     }
 }
 
